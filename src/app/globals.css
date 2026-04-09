@@ -1,26 +1,37 @@
 @import "tailwindcss";
+@import "react-day-picker/dist/style.css";
 
 :root {
-  --background: #ffffff;
+  --background: #f4f4f5; /* zinc-100 */
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  
+  /* react-day-picker overrides for the wall calendar aesthetic */
+  --rdp-cell-size: 46px; /* Larger hit areas for touch/mobile */
+  --rdp-accent-color: #0284c7; /* Sky 600 - Matches reference blue */
+  --rdp-background-color: #e0f2fe; /* Sky 100 - For the range between dates */
+  --rdp-accent-color-dark: #0369a1; /* Sky 700 - Hover state */
+  --rdp-background-color-dark: #bae6fd;
+  --rdp-outline: 2px solid var(--rdp-accent-color);
+  --rdp-outline-selected: 2px solid var(--rdp-accent-color);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom styling to hide default borders and make it look like a physical calendar */
+.rdp {
+  margin: 0;
+  --rdp-font-family: inherit;
+}
+.rdp-day_selected, 
+.rdp-day_selected:focus-visible, 
+.rdp-day_selected:hover {
+  color: white;
+  opacity: 1;
+  background-color: var(--rdp-accent-color);
+}
+.rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: #f1f5f9;
 }
