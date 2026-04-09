@@ -48,7 +48,7 @@ export default function CalendarWidget() {
     : "Select a date range";
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -56,35 +56,39 @@ export default function CalendarWidget() {
     >
       {/* LEFT PANEL: Hero Image (Wall Calendar Aesthetic) */}
       <div className="relative w-full md:w-5/12 h-[300px] md:h-auto bg-zinc-900">
-        <Image
+        <img
           src="https://images.unsplash.com/photo-1516681100942-77d8e7f9dd97?q=80&w=2500&auto=format&fit=crop"
           alt="Mountain Climber"
-          fill
-          priority
-          className="object-cover opacity-90"
+          className="object-cover w-full h-full opacity-90"
         />
         {/* Angled decorative overlay to match reference image */}
-        <div className="absolute bottom-0 w-full h-32 bg-white" style={{ clipPath: "polygon(0 40%, 100% 0, 100% 100%, 0 100%)" }}></div>
-        
+        <div
+          className="absolute bottom-0 w-full h-32 bg-white"
+          style={{ clipPath: "polygon(0 40%, 100% 0, 100% 100%, 0 100%)" }}
+        ></div>
+
         {/* Dynamic Theme Text on Image */}
         <div className="absolute bottom-6 right-8 text-right z-10">
-          <motion.h2 
+          <motion.h2
             key={range?.from ? "selected" : "none"}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             className="text-4xl font-bold text-sky-600 tracking-tight drop-shadow-sm"
           >
-            {range?.from ? format(range.from, "yyyy") : new Date().getFullYear()}
+            {range?.from
+              ? format(range.from, "yyyy")
+              : new Date().getFullYear()}
           </motion.h2>
           <p className="text-xl font-medium text-zinc-800 uppercase tracking-widest">
-            {range?.from ? format(range.from, "MMMM") : format(new Date(), "MMMM")}
+            {range?.from
+              ? format(range.from, "MMMM")
+              : format(new Date(), "MMMM")}
           </p>
         </div>
       </div>
 
       {/* RIGHT PANEL: Interactive Calendar & Notes */}
       <div className="w-full md:w-7/12 p-6 sm:p-10 flex flex-col justify-between">
-        
         {/* Top Section: Date Range Indicator */}
         <div className="flex items-center gap-3 mb-6 pb-4 border-b border-zinc-100 text-zinc-800">
           <CalendarIcon className="w-5 h-5 text-sky-600" />
@@ -107,7 +111,9 @@ export default function CalendarWidget() {
           <div className="flex items-center gap-2 mb-3 text-zinc-700">
             <PenLine className="w-4 h-4" />
             <h4 className="font-medium text-sm uppercase tracking-wider">
-              {range?.from ? `Notes for ${format(range.from, "MMM do")}` : "General Notes"}
+              {range?.from
+                ? `Notes for ${format(range.from, "MMM do")}`
+                : "General Notes"}
             </h4>
           </div>
           <AnimatePresence mode="wait">
@@ -119,7 +125,11 @@ export default function CalendarWidget() {
               transition={{ duration: 0.2 }}
               value={notes}
               onChange={handleNoteChange}
-              placeholder={range?.from ? "Jot down memos for this selection..." : "Select a date to attach a specific note..."}
+              placeholder={
+                range?.from
+                  ? "Jot down memos for this selection..."
+                  : "Select a date to attach a specific note..."
+              }
               className="w-full h-24 bg-transparent resize-none outline-none text-zinc-600 placeholder:text-zinc-400"
             />
           </AnimatePresence>

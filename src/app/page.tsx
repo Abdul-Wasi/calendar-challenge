@@ -1,4 +1,4 @@
-import CalendarWidget from "@/components/CalendarWidget";
+import CalendarWidget from "../components/CalendarWidget";
 
 export default function Home() {
   return (
